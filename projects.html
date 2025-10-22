@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects – Pavel Kolarov</title>
-  <link rel="icon" href="assets/favicon.png" />
+  <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -50,5 +50,38 @@
 
   <footer>© <span id="year"></span> Pavel Kolarov</footer>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+  <div class="fish" id="fish">🐟</div>
+
+  <script>
+    // Fade-in animation trigger
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("main, .card, h1, h2, p").forEach(el => {
+        el.classList.add("fade-in");
+      });
+    });
+
+    // Progress bar that loops every 60 seconds
+    const bar = document.getElementById("progress-bar");
+    function animateProgress() {
+      let start = Date.now();
+      function frame() {
+        let progress = ((Date.now() - start) / 60000) * 100; // 60 seconds
+        if (progress > 100) {
+          progress = 0;
+          start = Date.now();
+        }
+        bar.style.width = progress + "%";
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+    animateProgress();
+  </script>
+</body>
+</html>
+
 </body>
 </html>
