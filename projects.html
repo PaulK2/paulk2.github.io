@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects – Pavel Kolarov</title>
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="logo" href="index.html">Pavel Kolarov</a>
+      <div class="nav-links">
+        <a href="experience.html">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Projects</h1>
+
+    <div class="card">
+      <h2>Enterprise Projects</h2>
+      <ul>
+        <li><strong>A1 LAN Service</strong> – managed networking solution delivery for enterprise clients.</li>
+        <li><strong>Mercedes Connected Ambient Light</strong> – supported IoT lighting systems integration.</li>
+        <li><strong>Bosch E-Bike Systems</strong> – contributed to smart mobility software engineering and testing.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Personal Projects</h2>
+      <ul>
+        <li><strong>Work Tracker App</strong> – built a task-tracking tool using Python and SQLite for productivity insights.</li>
+        <li><strong>Mini RPG Game</strong> – developed a small adventure game to explore object-oriented design in C++ with SFML.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Creative Projects</h2>
+      <ul>
+        <li><strong>LabelCraft Studio</strong> – small independent design initiative creating product labels and branding visuals for local businesses.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>© <span id="year"></span> Pavel Kolarov</footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
