@@ -57,12 +57,25 @@
       });
     });
 
-    // Progress bar that loops every 60 seconds
+    <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+  <div class="fish" id="fish">🐟</div>
+
+  <script>
+    // Fade-in animation
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("main, .card, h1, h2, p, ul").forEach(el => {
+        el.classList.add("fade-in");
+      });
+    });
+
+    // Progress bar filling continuously
     const bar = document.getElementById("progress-bar");
     function animateProgress() {
       let start = Date.now();
       function frame() {
-        let progress = ((Date.now() - start) / 60000) * 100; // 60 seconds
+        let progress = ((Date.now() - start) / 60000) * 100;
         if (progress > 100) {
           progress = 0;
           start = Date.now();
@@ -73,9 +86,13 @@
       requestAnimationFrame(frame);
     }
     animateProgress();
+
+    // Year for footer
+    document.getElementById("year")?.textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
+
 
 </body>
 </html>
