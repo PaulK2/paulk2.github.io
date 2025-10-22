@@ -159,10 +159,24 @@ footer {
 }
 
 @keyframes fishSwim {
-  0%   { left: -40px; transform: rotateY(0deg); }
-  45%  { left: calc(100% - 30px); transform: rotateY(0deg); }
-  46%  { transform: translateY(-20px) rotate(10deg); }
-  47%  { transform: translateY(0) rotateY(180deg); } /* turn */
-  95%  { left: -40px; transform: rotateY(180deg); }
-  100% { left: -40px; transform: rotateY(0deg); }
+  0% {
+    left: -40px;
+    transform: rotateY(0deg);
+  }
+  45% {
+    left: calc(100% - 40px);
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotateY(180deg); /* jump and flip */
+  }
+  95% {
+    left: -40px;
+    transform: rotateY(180deg);
+  }
+  100% {
+    left: -40px;
+    transform: rotateY(0deg);
+  }
 }
+
