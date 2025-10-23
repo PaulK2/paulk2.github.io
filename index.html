@@ -37,21 +37,22 @@
     © <span id="year"></span> Pavel Kolarov
   </footer>
 
-  <!-- Progress bar + fish -->
+  <!-- Clock + Progress bar + Fish -->
+  <div id="clock" class="clock"></div>
   <div class="progress-container">
     <div class="progress-bar" id="progress-bar"></div>
   </div>
   <div class="fish" id="fish">🐟</div>
 
   <script>
-    // Fade transitions + element fade-ins
+    // Fade transitions + fade-in elements
     document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("page-ready");
       document.querySelectorAll("main, .card, h1, h2, p, ul").forEach(el => {
         el.classList.add("fade-in");
       });
 
-      // Fade-out on internal link click
+      // Fade-out between internal pages
       document.querySelectorAll('a[href]').forEach(a => {
         const url = new URL(a.href, location.href);
         const isInternal = url.origin === location.origin;
@@ -70,17 +71,46 @@
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Progress bar animation (loops every 60s)
+    // --- Clock + Progress + Fish synchronized ---
     const bar = document.getElementById("progress-bar");
-    (function animateProgress() {
-      let start = Date.now();
+    const fish = document.getElementById("fish");
+    const clock = document.getElementById("clock");
+    let lastMinute = -1;
+    let jumpTimeout;
+
+    (function animateEverything() {
       function frame() {
-        let progress = ((Date.now() - start) / 60000) * 100;
-        if (progress > 100) {
-          progress = 0;
-          start = Date.now();
+        const now = new Date();
+        const seconds = now.getSeconds() + now.getMilliseconds() / 1000;
+        const hh = now.getHours().toString().padStart(2, '0');
+        const mm = now.getMinutes().toString().padStart(2, '0');
+        const ss = now.getSeconds().toString().padStart(2, '0');
+        clock.textContent = `${hh}:${mm}:${ss}`;
+
+        // Calculate position (0..1) within the minute
+        const p = seconds / 60;
+        const goingRight = now.getMinutes() % 2 === 0; // alternate each minute
+        const progressPercent = goingRight ? p * 100 : (1 - p) * 100;
+        bar.style.width = progressPercent + "%";
+
+        // Fish movement
+        const W = window.innerWidth;
+        const x = (progressPercent / 100) * (W - 60);
+        const tilt = goingRight ? 18 : -18;
+        const flip = goingRight ? 1 : -1;
+        fish.style.left = x + "px";
+        fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
+
+        // Fish jump at minute change
+        if (now.getMinutes() !== lastMinute) {
+          lastMinute = now.getMinutes();
+          fish.style.transform += " translateY(-30px)";
+          clearTimeout(jumpTimeout);
+          jumpTimeout = setTimeout(() => {
+            fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
+          }, 500); // jump duration
         }
-        bar.style.width = progress + "%";
+
         requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
