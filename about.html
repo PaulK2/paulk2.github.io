@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About – Pavel Kolarov</title>
-  <link rel="icon" href="assets/favicon.png" />
+  <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header>
     <nav>
@@ -23,77 +24,36 @@
   <main class="container">
     <h1>About Me</h1>
 
-    <div class="card">
+    <div class="card fade-in">
       <p>
-        I’m a multidisciplinary <strong>ITS Delivery Specialist and Systems Engineer</strong> passionate about connecting
-        technology, communication, and design. I’ve worked with enterprise environments at A1, Bosch, and HP, gaining a
-        broad technical foundation across IT systems, hardware, and client coordination.
+        I’m a globally-minded ITS Delivery Specialist with hands-on experience across Europe.
+        I speak multiple languages, thrive in multicultural teams, and love solving both human and technical challenges.
       </p>
-
       <p>
-        My career started in hands-on hardware assembly, progressed through IT support, and grew into system delivery.
-        I’ve learned that real success comes from communication between people — not just perfect code or infrastructure.
+        I’ve worked on enterprise IT systems, design projects, and creative business ideas — 
+        combining structured technical delivery with visual and interpersonal strengths.
       </p>
-
       <p>
-        I studied Technical Engineering at the <strong>Technical University of Berlin</strong> (4 semesters) before
-        continuing my growth in full-time roles, where I discovered how to combine engineering with creativity and teamwork.
-      </p>
-
-      <p>
-        I’m now focused on <strong>international technical delivery roles in the UK</strong>, combining analytical thinking,
-        cross-cultural communication, and hands-on system experience.
+        My approach to work is simple: understand the goal, respect the people, and deliver with precision.
       </p>
     </div>
   </main>
 
   <footer>© <span id="year"></span> Pavel Kolarov</footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-    <div class="progress-container">
-    <div class="progress-bar" id="progress-bar"></div>
-  </div>
+
   <div class="fish" id="fish">🐟</div>
 
   <script>
-    // Fade-in animation trigger
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("main, .card, h1, h2, p").forEach(el => {
-        el.classList.add("fade-in");
-      });
+    document.body.classList.add('page-ready');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const fish = document.getElementById('fish');
+    document.addEventListener('mousemove', e => {
+      const centerX = window.innerWidth / 2;
+      const flip = e.clientX > centerX ? 1 : -1;
+      const tilt = e.clientX > centerX ? 10 : -10;
+      fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
     });
-
-    /  <div class="progress-container">
-    <div class="progress-bar" id="progress-bar"></div>
-  </div>
-  <div class="fish" id="fish">🐟</div>
-
-  <script>
-    // Fade-in animation
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("main, .card, h1, h2, p, ul").forEach(el => {
-        el.classList.add("fade-in");
-      });
-    });
-
-    // Progress bar filling continuously
-    const bar = document.getElementById("progress-bar");
-    function animateProgress() {
-      let start = Date.now();
-      function frame() {
-        let progress = ((Date.now() - start) / 60000) * 100;
-        if (progress > 100) {
-          progress = 0;
-          start = Date.now();
-        }
-        bar.style.width = progress + "%";
-        requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
-    animateProgress();
-
-    // Year for footer
-    document.getElementById("year")?.textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
