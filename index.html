@@ -87,17 +87,17 @@
         const ss = now.getSeconds().toString().padStart(2, '0');
         clock.textContent = `${hh}:${mm}:${ss}`;
 
-        // Calculate position (0..1) within the minute
+        // Progress and direction
         const p = seconds / 60;
         const goingRight = now.getMinutes() % 2 === 0; // alternate each minute
         const progressPercent = goingRight ? p * 100 : (1 - p) * 100;
         bar.style.width = progressPercent + "%";
 
-        // Fish movement
+        // Fish movement (fixed facing direction)
         const W = window.innerWidth;
         const x = (progressPercent / 100) * (W - 60);
-        const tilt = goingRight ? 18 : -18;
-        const flip = goingRight ? 1 : -1;
+        const tilt = goingRight ? -18 : 18; // FIXED orientation logic
+        const flip = goingRight ? -1 : 1;   // FIXED direction logic
         fish.style.left = x + "px";
         fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
 
@@ -108,7 +108,7 @@
           clearTimeout(jumpTimeout);
           jumpTimeout = setTimeout(() => {
             fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
-          }, 500); // jump duration
+          }, 500);
         }
 
         requestAnimationFrame(frame);
