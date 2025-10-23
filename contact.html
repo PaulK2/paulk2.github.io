@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact – Pavel Kolarov</title>
-  <link rel="icon" href="assets/favicon.png" />
+  <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header>
     <nav>
@@ -23,72 +24,31 @@
   <main class="container">
     <h1>Contact</h1>
 
-    <div class="card">
-      <p>
-        I’m always open to new opportunities, collaborations, and interesting projects.
-        Feel free to reach out — I usually respond within 24 hours.
-      </p>
-
+    <div class="card fade-in">
+      <p>If you’d like to collaborate, discuss opportunities, or just connect — feel free to reach out.</p>
       <ul>
-        <li><strong>Email:</strong> <a href="mailto:pavel_kolarov@yahoo.com">pavel_kolarov@yahoo.com</a></li>
-        <li><strong>LinkedIn:</strong> <a href="#">linkedin.com/in/pavelkolarov</a></li>
-        <li><strong>GitHub:</strong> <a href="#">github.com/pavelkolarov</a></li>
-        <li><strong>Location:</strong> Sofia, Bulgaria — Open to relocation (UK)</li>
+        <li><strong>Email:</strong> <a href="mailto:youremail@example.com">youremail@example.com</a></li>
+        <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></li>
+        <li><strong>Location:</strong> Open to global collaboration — currently based in Europe</li>
       </ul>
-
-      <p>
-        <a class="btn" href="assets/Pavel_Kolarov_2025_September.pdf" download>Download CV</a>
-      </p>
     </div>
   </main>
 
   <footer>© <span id="year"></span> Pavel Kolarov</footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-    <div class="progress-container">
-    <div class="progress-bar" id="progress-bar"></div>
-  </div>
+
   <div class="fish" id="fish">🐟</div>
 
   <script>
-    // Fade-in animation trigger
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("main, .card, h1, h2, p").forEach(el => {
-        el.classList.add("fade-in");
-      });
+    document.body.classList.add('page-ready');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const fish = document.getElementById('fish');
+    document.addEventListener('mousemove', e => {
+      const centerX = window.innerWidth / 2;
+      const flip = e.clientX > centerX ? 1 : -1;
+      const tilt = e.clientX > centerX ? 10 : -10;
+      fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
     });
-
-    <div class="progress-container">
-    <div class="progress-bar" id="progress-bar"></div>
-  </div>
-  <div class="fish" id="fish">🐟</div>
-
-  <script>
-    // Fade-in animation
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("main, .card, h1, h2, p, ul").forEach(el => {
-        el.classList.add("fade-in");
-      });
-    });
-
-    // Progress bar filling continuously
-    const bar = document.getElementById("progress-bar");
-    function animateProgress() {
-      let start = Date.now();
-      function frame() {
-        let progress = ((Date.now() - start) / 60000) * 100;
-        if (progress > 100) {
-          progress = 0;
-          start = Date.now();
-        }
-        bar.style.width = progress + "%";
-        requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
-    animateProgress();
-
-    // Year for footer
-    document.getElementById("year")?.textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
