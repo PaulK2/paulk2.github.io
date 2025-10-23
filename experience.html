@@ -63,9 +63,10 @@
     const fish = document.getElementById('fish');
     document.addEventListener('mousemove', e => {
       const centerX = window.innerWidth / 2;
-      const flip = e.clientX > centerX ? 1 : -1;
-      const tilt = e.clientX > centerX ? 10 : -10;
+      const flip = e.clientX > centerX ? -1 : 1;
+      const tilt = e.clientX > centerX ? -10 : 10;
       fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
+
     });
   </script>
 </body>
