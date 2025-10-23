@@ -30,30 +30,39 @@
     </div>
 
     <div class="card fade-in">
-      <h2>Mini RPG Game (Personal Project)</h2>
-      <p>A browser-based role-playing demo exploring game logic, design, and interactivity for fun and creativity.</p>
+      <h2>Mini RPG Game</h2>
+      <p>A browser-based game demo exploring logic, animation, and design creativity.</p>
     </div>
 
     <div class="card fade-in">
       <h2>Labeling Design Business</h2>
-      <p>Developed and branded product labeling designs for small businesses in Europe.</p>
+      <p>Developed modern label designs for small European brands and built e-commerce visuals.</p>
     </div>
   </main>
 
   <footer>© <span id="year"></span> Pavel Kolarov</footer>
 
-  <div class="fish" id="fish">🐟</div>
+  <div class="fish" id="fish" style="z-index: 9999;">🐟</div>
 
   <script>
-    document.body.classList.add('page-ready');
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener("DOMContentLoaded", () => {
+      // Page fade-in
+      document.body.classList.add("page-ready");
 
-    const fish = document.getElementById('fish');
-    document.addEventListener('mousemove', e => {
-      const centerX = window.innerWidth / 2;
-      const flip = e.clientX > centerX ? 1 : -1;
-      const tilt = e.clientX > centerX ? 10 : -10;
-      fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
+      // Footer year
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Fish follow logic
+      const fish = document.getElementById("fish");
+      if (fish) {
+        document.addEventListener("mousemove", e => {
+          const centerX = window.innerWidth / 2;
+          const flip = e.clientX > centerX ? 1 : -1;
+          const tilt = e.clientX > centerX ? 10 : -10;
+          fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
+        });
+      }
     });
   </script>
 </body>
