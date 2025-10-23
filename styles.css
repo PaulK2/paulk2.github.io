@@ -144,17 +144,21 @@ footer {
 /* === CLOCK (center above footer) === */
 .clock {
   position: fixed;
-  bottom: 60px;
+  bottom: 70px;              /* slightly higher above footer */
   left: 50%;
   transform: translateX(-50%);
+  width: fit-content;        /* ensures exact width around text */
   font-family: 'Inter', monospace;
-  font-size: 1.1rem;
-  color: var(--muted);
-  background: rgba(0,0,0,0.5);
-  padding: 4px 10px;
+  font-size: 1.2rem;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.45);
+  padding: 6px 14px;
   border-radius: 8px;
   z-index: 1000;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
 }
+
 
 /* === PROGRESS BAR + FISH === */
 .progress-container {
