@@ -181,11 +181,12 @@ footer {
 .fish {
   position: fixed;
   bottom: 24px;
-  left: -60px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 30px;
   color: var(--accent);
   z-index: 9999;
-  will-change: left, transform;
   pointer-events: none;
   transition: transform 0.3s ease;
 }
+
