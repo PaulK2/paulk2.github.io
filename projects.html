@@ -7,6 +7,7 @@
   <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header>
     <nav>
@@ -21,80 +22,39 @@
   </header>
 
   <main class="container">
-    <h1>Projects</h1>
+    <h1>Highlighted Projects</h1>
 
-    <div class="card">
-      <h2>Enterprise Projects</h2>
-      <ul>
-        <li><strong>A1 LAN Service</strong> – managed networking solution delivery for enterprise clients.</li>
-        <li><strong>Mercedes Connected Ambient Light</strong> – supported IoT lighting systems integration.</li>
-        <li><strong>Bosch E-Bike Systems</strong> – contributed to smart mobility software engineering and testing.</li>
-      </ul>
+    <div class="card fade-in">
+      <h2>Work Tracker Dashboard</h2>
+      <p>A lightweight tool to visualize and log IT service work progress. Built with HTML, CSS, and JavaScript.</p>
     </div>
 
-    <div class="card">
-      <h2>Personal Projects</h2>
-      <ul>
-        <li><strong>Work Tracker App</strong> – built a task-tracking tool using Python and SQLite for productivity insights.</li>
-        <li><strong>Mini RPG Game</strong> – developed a small adventure game to explore object-oriented design in C++ with SFML.</li>
-      </ul>
+    <div class="card fade-in">
+      <h2>Mini RPG Game (Personal Project)</h2>
+      <p>A browser-based role-playing demo exploring game logic, design, and interactivity for fun and creativity.</p>
     </div>
 
-    <div class="card">
-      <h2>Creative Projects</h2>
-      <ul>
-        <li><strong>LabelCraft Studio</strong> – small independent design initiative creating product labels and branding visuals for local businesses.</li>
-      </ul>
+    <div class="card fade-in">
+      <h2>Labeling Design Business</h2>
+      <p>Developed and branded product labeling designs for small businesses in Europe.</p>
     </div>
   </main>
 
   <footer>© <span id="year"></span> Pavel Kolarov</footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-    <div class="progress-container">
-    <div class="progress-bar" id="progress-bar"></div>
-  </div>
+
   <div class="fish" id="fish">🐟</div>
 
   <script>
-    // Fade-in animation trigger
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("main, .card, h1, h2, p").forEach(el => {
-        el.classList.add("fade-in");
-      });
+    document.body.classList.add('page-ready');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const fish = document.getElementById('fish');
+    document.addEventListener('mousemove', e => {
+      const centerX = window.innerWidth / 2;
+      const flip = e.clientX > centerX ? 1 : -1;
+      const tilt = e.clientX > centerX ? 10 : -10;
+      fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
     });
-
-     <div class="progress-container">
-    <div class="progress-bar" id="progress-bar"></div>
-  </div>
-  <div class="fish" id="fish">🐟</div>
-
-  <script>
-    // Fade-in animation
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("main, .card, h1, h2, p, ul").forEach(el => {
-        el.classList.add("fade-in");
-      });
-    });
-
-    // Progress bar filling continuously
-    const bar = document.getElementById("progress-bar");
-    function animateProgress() {
-      let start = Date.now();
-      function frame() {
-        let progress = ((Date.now() - start) / 60000) * 100;
-        if (progress > 100) {
-          progress = 0;
-          start = Date.now();
-        }
-        bar.style.width = progress + "%";
-        requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
-    animateProgress();
-
-    // Year for footer
-    document.getElementById("year")?.textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
