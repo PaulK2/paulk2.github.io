@@ -176,17 +176,19 @@ footer {
 /* Face right when swimming right, flip left on return */
 @keyframes fishSwim {
   /* Swim right */
-  0%   { left: -60px; transform: scaleX(1) rotate(0deg) translateY(0); }
-  45%  { left: calc(100% - 40px); transform: scaleX(1) rotate(18deg) translateY(0); }
-
-  /* Jump and flip mid-way */
-  50%  { left: calc(100% - 40px); transform: scaleX(-1) rotate(-18deg) translateY(-16px); }
-
-  /* Swim left */
   55%  { left: calc(100% - 40px); transform: scaleX(-1) rotate(-18deg) translateY(0); }
   95%  { left: -60px; transform: scaleX(-1) rotate(-18deg) translateY(0); }
 
+  /* Jump and flip mid-way */
+   100% { left: -60px; transform: scaleX(1) rotate(0deg) translateY(0); }
+  
+
+  /* Swim left */
+  0%   { left: -60px; transform: scaleX(1) rotate(0deg) translateY(0); }
+  45%  { left: calc(100% - 40px); transform: scaleX(1) rotate(18deg) translateY(0); }
+  
+
   /* Reset facing right for the next loop */
-  100% { left: -60px; transform: scaleX(1) rotate(0deg) translateY(0); }
+ 50%  { left: calc(100% - 40px); transform: scaleX(-1) rotate(-18deg) translateY(-16px); }
 }
 
