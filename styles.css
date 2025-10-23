@@ -158,25 +158,52 @@ footer {
   animation: fishSwim 60s linear infinite;
 }
 
-@keyframes fishSwim {
-  0% {
-    left: -40px;
-    transform: rotateY(0deg);
-  }
-  45% {
-    left: calc(100% - 40px);
-    transform: rotateY(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotateY(180deg); /* jump and flip */
-  }
-  95% {
-    left: -40px;
-    transform: rotateY(180deg);
-  }
-  100% {
-    left: -40px;
-    transform: rotateY(0deg);
-  }
+/* === PAGE FADE TRANSITIONS === */
+body {
+  opacity: 0;
+  transition: opacity .25s ease;
 }
+body.page-ready {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; opacity: 1; }
+}
+
+/* Ensure the main content still fades-in nicely */
+.fade-in {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeInUp .6s ease-out forwards;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === PROGRESS BAR + FISH (JS-driven) === */
+.progress-container {
+  position: fixed;
+  bottom: 0; left: 0;
+  height: 6px; width: 100%;
+  background: #1c2128;
+  overflow: hidden;
+  z-index: 999;
+}
+.progress-bar {
+  height: 100%; width: 0%;
+  background: var(--accent);
+  transition: width 0.1s linear;
+}
+
+.fish {
+  position: fixed;
+  bottom: 14px;
+  left: -40px; /* will be updated by JS */
+  width: 32px; height: 20px;
+  color: var(--accent); /* affects SVG fill if using currentColor */
+  will-change: transform, left;
+  pointer-events: none;
+}
+
 
