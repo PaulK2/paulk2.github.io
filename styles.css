@@ -138,19 +138,21 @@ footer {
   padding: 18px;
   color: var(--muted);
   font-size: 0.9rem;
+  position: relative;
 }
 
-/* === CLOCK === */
+/* === CLOCK (center above footer) === */
 .clock {
   position: fixed;
-  bottom: 38px;
-  right: 20px;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: 'Inter', monospace;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--muted);
-  background: rgba(0,0,0,0.4);
-  padding: 4px 8px;
-  border-radius: 6px;
+  background: rgba(0,0,0,0.5);
+  padding: 4px 10px;
+  border-radius: 8px;
   z-index: 1000;
 }
 
