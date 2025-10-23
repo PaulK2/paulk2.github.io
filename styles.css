@@ -11,6 +11,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
 
+/* === BODY & BASE LAYOUT === */
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--bg);
@@ -19,6 +20,16 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
+  /* Page fade transition */
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+body.page-ready {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; opacity: 1; }
 }
 
 /* === HEADER / NAVIGATION === */
@@ -60,7 +71,7 @@ nav {
   color: var(--accent);
 }
 
-/* === LAYOUT === */
+/* === MAIN LAYOUT === */
 main.container {
   flex: 1;
   max-width: 900px;
@@ -79,6 +90,9 @@ p {
   font-size: 1rem;
 }
 
+ul { margin-left: 20px; margin-bottom: 10px; }
+
+/* === CARDS === */
 .card {
   background: var(--bg-card);
   padding: 24px;
@@ -91,8 +105,6 @@ p {
   transform: translateY(-4px);
   box-shadow: 0 6px 14px rgba(0,0,0,0.4);
 }
-
-ul { margin-left: 20px; margin-bottom: 10px; }
 
 /* === BUTTONS === */
 .btn {
@@ -111,15 +123,15 @@ ul { margin-left: 20px; margin-bottom: 10px; }
   transform: translateY(-2px);
 }
 
-/* === FADE-IN ANIMATION === */
+/* === FADE-IN ELEMENTS === */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease-out forwards;
+  transform: translateY(14px);
+  animation: fadeInUp .6s ease-out forwards;
 }
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* === FOOTER === */
@@ -132,7 +144,7 @@ footer {
   font-size: 0.9rem;
 }
 
-/* === PROGRESS BAR + FISH === */
+/* === PROGRESS BAR + FISH (JS-driven) === */
 .progress-container {
   position: fixed;
   bottom: 0;
@@ -152,57 +164,11 @@ footer {
 
 .fish {
   position: fixed;
-  bottom: 10px;
-  left: -40px;
-  font-size: 28px;
-  animation: fishSwim 60s linear infinite;
-}
-
-/* === PAGE FADE TRANSITIONS === */
-body {
-  opacity: 0;
-  transition: opacity .25s ease;
-}
-body.page-ready {
-  opacity: 1;
-}
-@media (prefers-reduced-motion: reduce) {
-  body { transition: none; opacity: 1; }
-}
-
-/* Ensure the main content still fades-in nicely */
-.fade-in {
-  opacity: 0;
-  transform: translateY(14px);
-  animation: fadeInUp .6s ease-out forwards;
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* === PROGRESS BAR + FISH (JS-driven) === */
-.progress-container {
-  position: fixed;
-  bottom: 0; left: 0;
-  height: 6px; width: 100%;
-  background: #1c2128;
-  overflow: hidden;
-  z-index: 999;
-}
-.progress-bar {
-  height: 100%; width: 0%;
-  background: var(--accent);
-  transition: width 0.1s linear;
-}
-
-.fish {
-  position: fixed;
   bottom: 14px;
-  left: -40px; /* will be updated by JS */
-  width: 32px; height: 20px;
-  color: var(--accent); /* affects SVG fill if using currentColor */
+  left: -40px; /* updated dynamically by JS */
+  width: 32px;
+  height: 20px;
+  color: var(--accent);
   will-change: transform, left;
   pointer-events: none;
 }
-
