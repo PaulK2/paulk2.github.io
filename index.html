@@ -72,21 +72,46 @@
     // --- Footer year ---
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // --- Progress bar (fills every 60s) ---
-    const bar = document.getElementById("progress-bar");
-    (function animateProgress() {
-      let start = Date.now();
-      function frame() {
-        let progress = ((Date.now() - start) / 60000) * 100;
-        if (progress > 100) {
-          progress = 0;
-          start = Date.now();
-        }
-        bar.style.width = progress + "%";
-        requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    })();
+   /* === PROGRESS BAR + FISH === */
+.progress-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: #1c2128;
+  overflow: hidden;
+  z-index: 999;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.1s linear;
+}
+
+.fish {
+  position: fixed;
+  bottom: 24px; /* raise it a little above the bar */
+  left: -60px; /* start slightly off-screen */
+  font-size: 30px;
+  color: var(--accent); /* ensure it's visible! */
+  z-index: 9999;
+  animation: fishSwim 60s linear infinite;
+  will-change: left, transform;
+  pointer-events: none;
+}
+
+/* Swim right -> jump+flip -> swim left */
+@keyframes fishSwim {
+  0%   { left: -60px; transform: scaleX(1) translateY(0); }
+  45%  { left: calc(100% - 30px); transform: scaleX(1) translateY(0); }
+  50%  { left: calc(100% - 30px); transform: scaleX(-1) translateY(-16px); }
+  55%  { left: calc(100% - 30px); transform: scaleX(-1) translateY(0); }
+  95%  { left: -60px; transform: scaleX(-1) translateY(0); }
+  100% { left: -60px; transform: scaleX(1) translateY(0); }
+}
+
   </script>
 </body>
 </html>
