@@ -73,7 +73,7 @@
 
       // Use saved flip/tilt values (default face right)
       const flip = fish.dataset.flip || -1;
-      const tilt = fish.dataset.tilt || -10;
+      const tilt = fish.dataset.tilt || 10;
 
       fish.style.transform = `translateX(${currentX}px) scaleX(${flip}) rotate(${tilt}deg)`;
       requestAnimationFrame(animateFish);
