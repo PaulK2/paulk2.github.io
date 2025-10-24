@@ -52,6 +52,7 @@ nav {
 .logo {
   font-weight: 700;
   font-size: 1.3rem;
+  text-decoration: none;
   color: var(--accent);
 }
 .nav-links {
@@ -66,6 +67,7 @@ nav {
 }
 .nav-links a:hover {
   color: var(--accent);
+  text-decoration: none;
   text-shadow: 0 0 6px rgba(0,188,212,0.5);
 }
 
@@ -188,5 +190,6 @@ footer {
   z-index: 9999;
   pointer-events: none;
   transition: transform 0.3s ease;
+  will-change: transform;
 }
 
