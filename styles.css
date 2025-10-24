@@ -212,7 +212,15 @@ main.container .card h2 a:active {
   opacity: 0.7;
 }
 
-
+/* Plain, non-underlined, white link (for company names) */
+.link-plain,
+.link-plain:visited,
+.link-plain:hover,
+.link-plain:active {
+  color: var(--text) !important;        /* white/off-white */
+  text-decoration: none !important;      /* no underline */
+  font-weight: 600;                      /* keep the h2 weight look */
+  opacity: 1;                            /* avoid dim visited color */
 
 
 }
