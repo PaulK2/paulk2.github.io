@@ -44,26 +44,44 @@
 
   <div class="fish" id="fish" style="z-index: 9999;">🐟</div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Page fade-in
-      document.body.classList.add("page-ready");
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("page-ready");
 
-      // Footer year
-      const yearEl = document.getElementById("year");
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // Fish follow logic
-      const fish = document.getElementById("fish");
-      if (fish) {
-        document.addEventListener("mousemove", e => {
-          const centerX = window.innerWidth / 2;
-          const flip = e.clientX > centerX ? 1 : -1;
-          const tilt = e.clientX > centerX ? 10 : -10;
-          fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
-        });
-      }
+    const fish = document.getElementById("fish");
+    if (!fish) return;
+
+    let targetX = 0;
+    let currentX = 0;
+    const followStrength = 0.08; // smaller = smoother / slower follow
+
+    document.addEventListener("mousemove", e => {
+      const centerX = window.innerWidth / 2;
+      const flip = e.clientX > centerX ? -1 : 1;
+      const tilt = e.clientX > centerX ? -10 : 10;
+      targetX = ((e.clientX - centerX) / centerX) * 15; // move up to ±15px
+      fish.dataset.flip = flip;
+      fish.dataset.tilt = tilt;
     });
-  </script>
+
+    function animateFish() {
+      // Smooth interpolation for horizontal offset
+      currentX += (targetX - currentX) * followStrength;
+
+      // Use saved flip/tilt values (default face right)
+      const flip = fish.dataset.flip || -1;
+      const tilt = fish.dataset.tilt || -10;
+
+      fish.style.transform = `translateX(${currentX}px) scaleX(${flip}) rotate(${tilt}deg)`;
+      requestAnimationFrame(animateFish);
+    }
+
+    animateFish();
+  });
+</script>
+
 </body>
 </html>
