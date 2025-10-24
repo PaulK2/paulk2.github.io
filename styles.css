@@ -139,7 +139,7 @@ ul { margin-left: 20px; margin-bottom: 10px; }
 footer {
   border-top: 1px solid #21262d;
   background: var(--bg-card);
-  text-align: center;
+  text-align: right;      /* ← moved to the right */
   /* padding: 18px; */
   padding: 24px 28px 32px;
   color: var(--muted);
