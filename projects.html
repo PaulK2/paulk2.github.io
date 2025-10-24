@@ -61,7 +61,7 @@
     document.addEventListener("mousemove", e => {
       const centerX = window.innerWidth / 2;
       const flip = e.clientX > centerX ? -1 : 1;
-      const tilt = e.clientX > centerX ? -10 : 10;
+      const tilt = e.clientX > centerX ? 10 : 10;
       targetX = ((e.clientX - centerX) / centerX) * 15; // move up to ±15px
       fish.dataset.flip = flip;
       fish.dataset.tilt = tilt;
