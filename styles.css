@@ -196,16 +196,20 @@ footer {
   transition: transform 0.3s ease;
   will-change: transform;
 
-  .card h2 a {
-  color: var(--text);        /* same as normal text (white) */
-  text-decoration: none;     /* removes underline */
+ /* --- Company links on Experience page --- */
+.card h2 a,
+.card h2 a:visited,
+.card h2 a:hover,
+.card h2 a:active {
+  color: var(--text) !important;     /* force white text */
+  text-decoration: none !important;  /* remove underline */
   transition: opacity 0.2s ease;
 }
 
 .card h2 a:hover {
-  opacity: 0.7;              /* subtle fade on hover */
-  text-decoration: none;     /* underline never appears */
+  opacity: 0.7;
 }
+
 
 
 
