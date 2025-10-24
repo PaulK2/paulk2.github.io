@@ -140,7 +140,8 @@ footer {
   border-top: 1px solid #21262d;
   background: var(--bg-card);
   text-align: center;
-  padding: 18px;
+  /* padding: 18px; */
+  padding: 24px 28px 32px;
   color: var(--muted);
   font-size: 0.9rem;
   position: relative;
