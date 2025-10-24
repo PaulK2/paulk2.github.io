@@ -197,13 +197,14 @@ footer {
   will-change: transform;
 
   .card h2 a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color 0.2s ease;
+  color: var(--text);        /* same as normal text (white) */
+  text-decoration: none;     /* removes underline */
+  transition: opacity 0.2s ease;
 }
+
 .card h2 a:hover {
-  color: #08e0ff;
-  text-shadow: 0 0 8px rgba(0,188,212,0.6);
+  opacity: 0.7;              /* subtle fade on hover */
+  text-decoration: none;     /* underline never appears */
 }
 
 
