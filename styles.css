@@ -197,14 +197,16 @@ footer {
   will-change: transform;
 
  /* --- Company links on Experience page --- */
-.card h2 a,
-.card h2 a:visited,
-.card h2 a:hover,
-.card h2 a:active {
-  color: var(--text) !important;     /* force white text */
-  text-decoration: none !important;  /* remove underline */
-  transition: opacity 0.2s ease;
+/* Force company links to look like normal text */
+main.container .card h2 a,
+main.container .card h2 a:visited,
+main.container .card h2 a:hover,
+main.container .card h2 a:active {
+  color: #e6edf3 !important;          /* exact white text color */
+  text-decoration: none !important;   /* remove underline */
+  font-weight: 600 !important;
 }
+
 
 .card h2 a:hover {
   opacity: 0.7;
