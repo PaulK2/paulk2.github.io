@@ -59,17 +59,16 @@ nav {
   display: flex;
   gap: 24px;
 }
-.nav-links a {
+header nav .nav-links a {
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
 }
-.nav-links a:hover {
+header nav .nav-links a:hover {
   color: var(--accent);
-  text-decoration: none;
-  text-shadow: 0 0 6px rgba(0,188,212,0.5);
 }
+
 
 /* === MAIN LAYOUT === */
 main.container {
