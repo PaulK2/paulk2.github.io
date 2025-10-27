@@ -208,21 +208,25 @@ main.container .card h2 a:active {
 }
 
 
-/* Company links — clean white, no underline */
+/* --- Company links on Experience page (final clean version) --- */
+.card h2 a,
+.card h2 a:visited,
+.card h2 a:hover,
+.card h2 a:active,
 .link-plain,
-.link-plain:visited {
-  color: var(--text) !important;
-  text-decoration: none !important;
-  font-weight: 600;
+.link-plain:visited,
+.link-plain:hover,
+.link-plain:active {
+  color: #e6edf3 !important;       /* light text color */
+  text-decoration: none !important; /* remove underline */
+  font-weight: 600;                 /* consistent bold weight */
   opacity: 1;
   transition: opacity 0.2s ease;
 }
 
-.link-plain:hover,
-.link-plain:active {
-  opacity: 0.7 !important;
-  text-decoration: none !important;
-  color: var(--text) !important;
+.card h2 a:hover,
+.link-plain:hover {
+  opacity: 0.7 !important;          /* subtle fade on hover */
 }
 
 
