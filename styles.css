@@ -207,22 +207,23 @@ main.container .card h2 a:active {
 }
 
 
-/* --- Company links on Experience page (final definitive version) --- */
+/* --- final absolute override for company links --- */
 a.link-plain,
 a.link-plain:visited,
 a.link-plain:hover,
 a.link-plain:active {
-  color: #e6edf3 !important;        /* pure white text */
-  text-decoration: none !important; /* never underlined */
-  font-weight: 600 !important;      /* bold like heading */
+  all: revert !important;
+  color: #e6edf3 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s ease;
-  outline: none;
+}
+a.link-plain:hover {
+  opacity: 0.7 !important;
 }
 
-a.link-plain:hover {
-  opacity: 0.7 !important;          /* gentle fade on hover */
-}
 
 
 
