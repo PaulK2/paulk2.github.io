@@ -208,19 +208,23 @@ main.container .card h2 a:active {
 }
 
 
-.card h2 a:hover {
-  opacity: 0.7;
+/* Company links — clean white, no underline */
+.link-plain,
+.link-plain:visited {
+  color: var(--text) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  opacity: 1;
+  transition: opacity 0.2s ease;
 }
 
-/* Plain, non-underlined, white link (for company names) */
-.link-plain,
-.link-plain:visited,
 .link-plain:hover,
 .link-plain:active {
-  color: var(--text) !important;        /* white/off-white */
-  text-decoration: none !important;      /* no underline */
-  font-weight: 600;                      /* keep the h2 weight look */
-  opacity: 1;                            /* avoid dim visited color */
+  opacity: 0.7 !important;
+  text-decoration: none !important;
+  color: var(--text) !important;
+}
+
 
 
 }
