@@ -195,34 +195,27 @@ footer {
   transition: transform 0.3s ease;
   will-change: transform;
 
- /* --- Company links on Experience page --- */
-/* Force company links to look like normal text */
-main.container .card h2 a,
-main.container .card h2 a:visited,
-main.container .card h2 a:hover,
-main.container .card h2 a:active {
-  color: #e6edf3 !important;          /* exact white text color */
-  text-decoration: none !important;   /* remove underline */
-  font-weight: 600 !important;
+
+/* --- FINAL override for company links (Experience) --- */
+/* Reset all UA link styles, then re-apply your look */
+main.container .card h2 > a.link-plain,
+main.container .card h2 > a.link-plain:visited,
+main.container .card h2 > a.link-plain:hover,
+main.container .card h2 > a.link-plain:active {
+  all: unset;                       /* wipe UA/link defaults */
+  display: inline;                  /* keep inline */
+  cursor: pointer;                  /* show it's clickable */
+  font-weight: 600;                 /* heading weight */
+  color: #e6edf3 !important;        /* your off-white */
+  text-decoration: none !important; /* no underline */
+  text-decoration-color: #e6edf3 !important; /* belt & suspenders */
+  -webkit-text-fill-color: #e6edf3; /* Safari oddities */
+  transition: opacity .2s ease;
+}
+main.container .card h2 > a.link-plain:hover {
+  opacity: .7;
 }
 
-
-/* --- final absolute override for company links --- */
-a.link-plain,
-a.link-plain:visited,
-a.link-plain:hover,
-a.link-plain:active {
-  all: revert !important;
-  color: #e6edf3 !important;
-  text-decoration: none !important;
-  font-weight: 600 !important;
-  cursor: pointer;
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-a.link-plain:hover {
-  opacity: 0.7 !important;
-}
 
 
 
