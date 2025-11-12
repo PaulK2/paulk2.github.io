@@ -1,242 +1,183 @@
-/* === GLOBAL COLORS === */
-:root {
-  --bg: #0d1117;
-  --bg-card: #161b22;
-  --text: #e6edf3;
-  --muted: #8b949e;
-  --accent: #00bcd4;
+/* === THEME === */
+:root{
+  --bg:#0d1117;
+  --bg-card:#161b22;
+  --text:#e6edf3;
+  --muted:#8b949e;
+  --accent:#00bcd4;
 }
 
-/* === RESET === */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; }
+/* === RESET & CORE LAYOUT === */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  font-family:'Inter',system-ui,sans-serif;
 
-/* Global link reset: anchors inherit text color by default */
-a { 
-  color: inherit; 
-  text-decoration: none; 
+  /* page fade */
+  opacity:0; transition:opacity .25s ease;
 }
-a:visited { 
-  color: inherit; 
-}
-a:hover, a:active { 
-  text-decoration: none; 
+body.page-ready{opacity:1}
+@media (prefers-reduced-motion:reduce){
+  body{transition:none;opacity:1}
 }
 
-/* === BODY & BASE LAYOUT === */
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+/* Main content centered; pushes footer down */
+main.container{
+  flex:1;
+  max-width:900px;
+  margin:0 auto;
+  padding:60px 20px;
+}
 
-  /* Fade transition between pages */
-  opacity: 0;
-  transition: opacity 0.25s ease;
+/* Footer anchored at bottom */
+footer{
+  margin-top:auto;
+  border-top:1px solid #21262d;
+  background:var(--bg-card);
+  text-align:right;             /* your preferred right alignment */
+  padding:18px 28px;
+  color:var(--muted);
+  font-size:.9rem;
 }
-body.page-ready {
-  opacity: 1;
-}
-@media (prefers-reduced-motion: reduce) {
-  body { transition: none; opacity: 1; }
-}
+
+/* Provide a little room for fixed progress bar */
+body{padding-bottom:14px}
 
 /* === HEADER / NAVIGATION === */
-header {
-  background: var(--bg-card);
-  border-bottom: 1px solid #21262d;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+header{
+  background:var(--bg-card);
+  border-bottom:1px solid #21262d;
+  position:sticky; top:0; z-index:100;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
 }
-nav {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 14px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.logo {
-  font-weight: 700;
-  font-size: 1.3rem;
-  text-decoration: none;
-  color: var(--accent);
-}
-.nav-links {
-  display: flex;
-  gap: 24px;
-}
-header nav .nav-links a {
-  color: var(--accent);        /* blue accent for nav links */
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
+nav{
+  max-width:1000px;
+  margin:0 auto;
+  padding:14px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-}
-header nav .nav-links a:hover {
-  color: #08e0ff;              /* brighter blue on hover */
-}
-
-}
-
-
-/* === MAIN LAYOUT === */
-main.container {
-  flex: 1;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 60px 20px;
-}
-h1, h2, h3 {
-  color: var(--text);
-  margin-bottom: 12px;
-  font-weight: 600;
-}
-p {
-  color: var(--muted);
-  margin-bottom: 16px;
-  font-size: 1rem;
-}
-ul { margin-left: 20px; margin-bottom: 10px; }
-
-/* === CARDS === */
-.card {
-  background: var(--bg-card);
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid #21262d;
-  margin-bottom: 24px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+/* Make the MAIN HEADER LOGO BLUE */
+.logo{
+  font-weight:700;
+  font-size:1.3rem;
+  text-decoration:none;
+  color:var(--accent);
 }
 
-/* === BUTTONS === */
-.btn {
-  display: inline-block;
-  background: var(--accent);
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 0 rgba(0,188,212,0.4);
-}
-.btn:hover {
-  background: #08e0ff;
-  box-shadow: 0 0 16px rgba(0,188,212,0.6);
-  transform: translateY(-2px);
-  color: #fff; /* stays white on hover */
-  text-decoration: none; /* ensures underline never returns */
-}
+/* Global link reset (body links inherit white unless restyled) */
+a{color:inherit;text-decoration:none}
+a:visited{color:inherit}
 
-/* === FADE-IN ELEMENTS === */
-.fade-in {
-  opacity: 0;
-  transform: translateY(14px);
-  animation: fadeInUp .6s ease-out forwards;
+/* Nav links: keep them readable (white) and accent on hover */
+.nav-links{display:flex;gap:24px}
+header nav .nav-links a{
+  color:var(--text);
+  font-weight:500;
+  transition:color .2s ease;
 }
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+header nav .nav-links a:hover{color:var(--accent)}
 
-/* === FOOTER === */
-footer {
-  border-top: 1px solid #21262d;
-  background: var(--bg-card);
-  text-align: right;      /* ← moved to the right */
-  /* padding: 18px; */
-  padding: 24px 28px 32px;
-  color: var(--muted);
-  font-size: 0.9rem;
-  position: relative;
-}
+/* === TYPOGRAPHY & CARDS === */
+h1,h2,h3{color:var(--text);margin-bottom:12px;font-weight:600}
+p{color:var(--muted);margin-bottom:16px;font-size:1rem}
+ul{margin-left:20px;margin-bottom:10px}
 
-/* === CLOCK (center above footer) === */
-.clock {
-  position: fixed;
-  bottom: 70px;              /* slightly higher above footer */
-  left: 50%;
-  transform: translateX(-50%);
-  width: fit-content;        /* ensures exact width around text */
-  font-family: 'Inter', monospace;
-  font-size: 1.2rem;
-  color: var(--text);
-  background: rgba(0, 0, 0, 0.45);
-  padding: 6px 14px;
-  border-radius: 8px;
-  z-index: 1000;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+.card{
+  background:var(--bg-card);
+  padding:24px;
+  border-radius:12px;
+  border:1px solid #21262d;
+  margin-bottom:24px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 6px 14px rgba(0,0,0,.4)}
+
+/* Buttons */
+.btn{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;                   /* white text inside buttons */
+  padding:10px 18px;
+  border-radius:8px;
+  font-weight:600;
+  text-decoration:none;         /* no underline */
+  transition:all .3s ease;
+  box-shadow:0 0 0 rgba(0,188,212,.4);
+}
+.btn:hover{
+  background:#08e0ff;
+  box-shadow:0 0 16px rgba(0,188,212,.6);
+  transform:translateY(-2px);
+  color:#fff; text-decoration:none;
 }
 
+/* Fade-in utility */
+.fade-in{opacity:0;transform:translateY(14px);animation:fadeInUp .6s ease-out forwards}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-/* === PROGRESS BAR + FISH === */
-.progress-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  height: 6px;
-  width: 100%;
-  background: #1c2128;
-  overflow: hidden;
-  z-index: 999;
-}
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--accent), #00eaff);
-  transition: width 0.1s linear;
-}
-
-.fish {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 30px;
-  color: var(--accent);
-  z-index: 9999;
-  pointer-events: none;
-  transition: transform 0.3s ease;
-  will-change: transform;
-
-
-/* --- FINAL override for company links (Experience) --- */
-/* Reset all UA link styles, then re-apply your look */
-main.container .card h2 > a.link-plain,
-main.container .card h2 > a.link-plain:visited,
-main.container .card h2 > a.link-plain:hover,
-main.container .card h2 > a.link-plain:active {
-  all: unset;                       /* wipe UA/link defaults */
-  display: inline;                  /* keep inline */
-  cursor: pointer;                  /* show it's clickable */
-  font-weight: 600;                 /* heading weight */
-  color: #e6edf3 !important;        /* your off-white */
-  text-decoration: none !important; /* no underline */
-  text-decoration-color: #e6edf3 !important; /* belt & suspenders */
-  -webkit-text-fill-color: #e6edf3; /* Safari oddities */
-  transition: opacity .2s ease;
-}
-main.container .card h2 > a.link-plain:hover {
-  opacity: .7;
+/* === CLOCK (centered above footer) === */
+.clock{
+  position:fixed;
+  bottom:70px;
+  left:50%;
+  transform:translateX(-50%);
+  width:fit-content;
+  font-family:'Inter',monospace;
+  font-size:1.1rem;
+  color:var(--text);
+  background:rgba(0,0,0,.45);
+  padding:6px 14px;
+  border-radius:8px;
+  z-index:1000;
+  text-align:center;
+  box-shadow:0 0 10px rgba(0,188,212,.3);
 }
 
-
-
-
-
-
-
+/* === PROGRESS BAR === */
+.progress-container{
+  position:fixed; bottom:0; left:0;
+  height:6px; width:100%;
+  background:#1c2128; overflow:hidden; z-index:999;
+}
+.progress-bar{
+  height:100%; width:0%;
+  background:linear-gradient(90deg,var(--accent),#00eaff);
+  transition:width .1s linear;
 }
 
+/* === FISH (footer) === */
+.fish{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:30px;
+  color:var(--accent);
+  z-index:9999;
+  pointer-events:none;
+  transition:transform .3s cubic-bezier(.25,.1,.25,1);
+  will-change:transform;
+}
+
+/* === EXPERIENCE PAGE: COMPANY LINKS === */
+/* Use this class on company anchors to keep them white/no-underline */
+a.link-plain,
+a.link-plain:visited,
+a.link-plain:hover,
+a.link-plain:active{
+  color:#e6edf3 !important;
+  text-decoration:none !important;
+  font-weight:600 !important;
+  opacity:1;
+  transition:opacity .2s ease;
+}
+a.link-plain:hover{opacity:.7 !important}
