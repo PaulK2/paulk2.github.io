@@ -3,14 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pavel Kolarov – ITS Delivery Specialist</title>
-  <link rel="icon" href="assets/favicon.ico" />
+
+  <title>Pavel Kolarov</title>
+
+  <!-- SEO -->
+  <meta
+    name="description"
+    content="Pavel Kolarov – I’m a globally-minded Specialist with hands-on experience across Europe. I speak multiple languages, thrive in multicultural teams, and love solving both human and technical challenges."
+  />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Pavel Kolarov" />
+  <meta property="og:description" content="I’m a globally-minded Specialist with hands-on experience across Europe. I speak multiple languages, thrive in multicultural teams, and love solving both human and technical challenges." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pavelkolarov.net/" />
+  <!-- Optional: if you have a preview image -->
+  <!-- <meta property="og:image" content="https://YOUR_GITHUB_USERNAME.github.io/assets/preview.png" /> -->
+
+  <!-- Browser theme color -->
+  <meta name="theme-color" content="#0d1117" />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
   <header>
-    <nav>
+    <nav aria-label="Main navigation">
       <a class="logo" href="index.html">Pavel Kolarov</a>
       <div class="nav-links">
         <a href="experience.html">Experience</a>
@@ -22,15 +43,24 @@
   </header>
 
   <main class="container">
-    <h1>Hello, I’m Pavel 👋</h1>
-    <p>
-      I’m a multilingual <strong>ITS Delivery Specialist & Systems Engineer</strong> with experience at A1, Bosch, and HP Enterprise.
-      I connect technology, people, and business to deliver reliable results across enterprise environments.
-    </p>
-    <p>
-      <a class="btn" href="assets/Pavel_Kolarov_2025_September.pdf" download>Download CV</a>
-      <a class="btn" href="contact.html">Get in Touch</a>
-    </p>
+    <section aria-label="Introduction">
+      <h1>Hello, I’m Pavel 👋</h1>
+      <p>
+        I’m a multilingual <strong>ITS Delivery Specialist &amp; Systems Engineer</strong> with experience at A1, Bosch, and HP Enterprise.
+        I connect technology, people, and business to deliver reliable results across enterprise environments.
+      </p>
+      <p>
+        <a
+          class="btn"
+          href="assets/Pavel_Kolarov_2025_September.pdf"
+          download
+          aria-label="Download Pavel Kolarov's CV as PDF"
+        >
+          Download CV
+        </a>
+        <a class="btn" href="contact.html">Get in Touch</a>
+      </p>
+    </section>
   </main>
 
   <footer>
@@ -38,38 +68,53 @@
   </footer>
 
   <!-- Clock + Progress bar + Fish -->
-  <div id="clock" class="clock"></div>
-  <div class="progress-container">
+  <div
+    id="clock"
+    class="clock"
+    aria-label="Current time"
+    aria-live="off"
+  ></div>
+
+  <div class="progress-container" aria-hidden="true">
     <div class="progress-bar" id="progress-bar"></div>
   </div>
-  <div class="fish" id="fish">🐟</div>
+
+  <div class="fish" id="fish" aria-hidden="true">🐟</div>
 
   <script>
     // Fade transitions + fade-in elements
     document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("page-ready");
-      document.querySelectorAll("main, .card, h1, h2, p, ul").forEach(el => {
-        el.classList.add("fade-in");
-      });
+
+      document
+        .querySelectorAll("main, .card, h1, h2, p, ul")
+        .forEach((el) => el.classList.add("fade-in"));
 
       // Fade-out between internal pages
-      document.querySelectorAll('a[href]').forEach(a => {
-        const url = new URL(a.href, location.href);
-        const isInternal = url.origin === location.origin;
-        const isFile = url.pathname.endsWith(".html") || url.pathname === "/" || url.pathname === location.pathname;
-        if (isInternal && isFile && !a.hasAttribute('data-no-transition')) {
-          a.addEventListener('click', (e) => {
+      document.querySelectorAll('a[href]').forEach((a) => {
+        const url = new URL(a.getAttribute('href'), window.location.href);
+        const isInternal = url.origin === window.location.origin;
+        const isFile =
+          url.pathname.endsWith(".html") ||
+          url.pathname === "/" ||
+          url.pathname === window.location.pathname;
+
+        if (isInternal && isFile && !a.hasAttribute("data-no-transition")) {
+          a.addEventListener("click", (e) => {
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
             e.preventDefault();
-            document.body.classList.remove('page-ready');
-            setTimeout(() => { window.location.href = a.href; }, 220);
+            document.body.classList.remove("page-ready");
+            setTimeout(() => {
+              window.location.href = url.href;
+            }, 220);
           });
         }
       });
     });
 
     // Footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
 
     // --- Clock + Progress + Fish synchronized ---
     const bar = document.getElementById("progress-bar");
@@ -82,9 +127,10 @@
       function frame() {
         const now = new Date();
         const seconds = now.getSeconds() + now.getMilliseconds() / 1000;
-        const hh = now.getHours().toString().padStart(2, '0');
-        const mm = now.getMinutes().toString().padStart(2, '0');
-        const ss = now.getSeconds().toString().padStart(2, '0');
+
+        const hh = now.getHours().toString().padStart(2, "0");
+        const mm = now.getMinutes().toString().padStart(2, "0");
+        const ss = now.getSeconds().toString().padStart(2, "0");
         clock.textContent = `${hh}:${mm}:${ss}`;
 
         // Progress and direction
@@ -93,11 +139,11 @@
         const progressPercent = goingRight ? p * 100 : (1 - p) * 100;
         bar.style.width = progressPercent + "%";
 
-        // Fish movement (fixed facing direction)
+        // Fish movement
         const W = window.innerWidth;
         const x = (progressPercent / 100) * (W - 60);
-        const tilt = goingRight ? -5 : 5; // FIXED orientation logic
-        const flip = goingRight ? -1 : 1;   // FIXED direction logic
+        const tilt = goingRight ? -5 : 5;
+        const flip = goingRight ? -1 : 1;
         fish.style.left = x + "px";
         fish.style.transform = `scaleX(${flip}) rotate(${tilt}deg)`;
 
@@ -117,4 +163,3 @@
     })();
   </script>
 </body>
-</html>
