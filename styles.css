@@ -51,12 +51,14 @@ footer{
   width: 100%;
   border-top: 1px solid #21262d;
   background: var(--bg-card);
-  padding: 14px 22px;     /* smaller padding */
-  text-align: center;     /* centered text (recommended) */
+  padding: 14px 22px;
+  text-align: right;
   color: var(--muted);
   font-size: .9rem;
   z-index: 900;
+  overflow: hidden;      /* prevent text clipping */
 }
+
 
 
 /* === HEADER / NAVIGATION === */
