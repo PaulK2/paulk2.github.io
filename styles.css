@@ -28,7 +28,9 @@ body{
   transition:opacity .25s ease;
 
   /* keep space so the fixed progress bar doesn't overlap content */
-  padding-bottom:14px;
+  padding-bottom: 80px;  /* make room for footer height */
+
+
 }
 
 body.page-ready{
@@ -43,14 +45,19 @@ main.container{
 }
 
 footer{
-  margin-top:auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   border-top:1px solid #21262d;
   background:var(--bg-card);
   text-align:right;
   padding:18px 28px;
   color:var(--muted);
   font-size:.9rem;
+  z-index: 900;
 }
+
 
 
 /* === HEADER / NAVIGATION === */
@@ -259,7 +266,7 @@ p .btn {
 /* === PROGRESS BAR === */
 .progress-container{
   position:fixed;
-  bottom:0;
+  bottom: 60px;
   left:0;
   height:6px;
   width:100%;
