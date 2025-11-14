@@ -171,7 +171,7 @@ ul{
 .btn{
   display:inline-block;
   background:var(--accent);
-  color:#fff;
+  color:#fff !important;
   padding:10px 18px;
   border-radius:8px;
   font-weight:600;
@@ -181,6 +181,11 @@ ul{
   border:none;
   cursor:pointer;
 }
+
+p .btn {
+  color: #fff;
+}
+
 .btn:hover{
   background:#08e0ff;
   box-shadow:0 0 16px rgba(0,188,212,.6);
