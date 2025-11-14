@@ -265,7 +265,7 @@ p .btn {
 /* === FISH (footer) === */
 .fish{
   position:fixed;
-  bottom:24px;
+  bottom:44px;
   left:50%;
   transform:translateX(-50%);
   font-size:30px;
