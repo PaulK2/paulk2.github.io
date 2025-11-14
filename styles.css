@@ -69,8 +69,8 @@ nav{
 .logo{
   font-weight:700;
   font-size:1.3rem;
-  text-decoration:none;
-  color:var(--accent);
+  text-decoration: none;
+  color: var(--accent);
 }
 
 /* Global link reset (body links inherit white unless restyled) */
@@ -167,6 +167,19 @@ ul{margin-left:20px;margin-bottom:10px}
   transition:transform .3s cubic-bezier(.25,.1,.25,1);
   will-change:transform;
 }
+
+/* === LAYOUT FIX: sticky footer === */
+html, body { height: 100%; }
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-bottom: 0 !important; /* remove extra gap */
+}
+main.container { flex: 1; }
+footer { margin-top: auto; }
+
 
 /* === EXPERIENCE PAGE: COMPANY LINKS === */
 /* Use this class on company anchors to keep them white/no-underline */
