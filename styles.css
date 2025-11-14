@@ -196,6 +196,128 @@ ul{
   flex: 1;
 }
 
+/* === EXPERIENCE TIMELINE === */
+.experience-timeline{
+  margin-top: 24px;
+  position: relative;
+  padding-left: 8px;
+}
+
+/* Vertical line */
+.experience-timeline::before{
+  content:"";
+  position:absolute;
+  left:40px;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:#21262d;
+  opacity:.9;
+}
+
+/* Each card sits on the line */
+.exp-item{
+  position:relative;
+}
+
+/* Timeline dot for each job */
+.exp-item::before{
+  content:"";
+  position:absolute;
+  left:40px;
+  top:32px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--bg);
+  box-shadow:0 0 0 2px var(--accent);
+  transform:translate(-50%,-50%);
+}
+
+/* === EXPERIENCE TYPOGRAPHY === */
+.exp-header h2{
+  margin-bottom:4px;
+}
+
+.exp-meta{
+  font-size:.9rem;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.exp-role{
+  font-weight:600;
+  color:var(--text);
+}
+
+.exp-separator{
+  margin:0 4px;
+}
+
+.exp-period{
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-size:.8rem;
+}
+
+/* === TECH STACK BADGES === */
+.tech-stack{
+  margin-top:8px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.badge{
+  font-size:.75rem;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#1c2128;
+  color:var(--muted);
+  border:1px solid #30363d;
+  white-space:nowrap;
+}
+
+/* === LOGO ANIMATION === */
+.exp-logo.logo-anim{
+  opacity:0;
+  transform:translateY(8px) scale(.96);
+  animation:logoIn .6s ease-out forwards;
+}
+
+/* Staggered animation per card */
+.exp-item:nth-child(1) .logo-anim{ animation-delay:.05s; }
+.exp-item:nth-child(2) .logo-anim{ animation-delay:.12s; }
+.exp-item:nth-child(3) .logo-anim{ animation-delay:.19s; }
+.exp-item:nth-child(4) .logo-anim{ animation-delay:.26s; }
+.exp-item:nth-child(5) .logo-anim{ animation-delay:.33s; }
+.exp-item:nth-child(6) .logo-anim{ animation-delay:.40s; }
+
+@keyframes logoIn{
+  from{
+    opacity:0;
+    transform:translateY(8px) scale(.96);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* Mobile tweaks */
+@media (max-width:700px){
+  .experience-timeline{
+    padding-left:0;
+  }
+  .experience-timeline::before{
+    left:28px;
+  }
+  .exp-item::before{
+    left:28px;
+  }
+}
+
+
 
 /* Buttons in main content */
 .btn{
