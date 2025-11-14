@@ -8,23 +8,43 @@
 }
 
 /* === RESET & CORE LAYOUT === */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,
+body{
+  height:100%;
+  scroll-behavior:smooth;
+}
+
 body{
   min-height:100vh;
   display:flex;
   flex-direction:column;
+  margin:0;
   background:var(--bg);
   color:var(--text);
   line-height:1.6;
   font-family:'Inter',system-ui,sans-serif;
 
   /* page fade */
-  opacity:0; transition:opacity .25s ease;
+  opacity:0;
+  transition:opacity .25s ease;
+
+  /* leave room for fixed progress bar */
+  padding-bottom:14px;
 }
-body.page-ready{opacity:1}
+
+body.page-ready{opacity:1;}
+
 @media (prefers-reduced-motion:reduce){
-  body{transition:none;opacity:1}
+  body{
+    transition:none;
+    opacity:1;
+  }
 }
 
 /* Main content centered; pushes footer down */
@@ -32,7 +52,7 @@ main.container{
   flex:1;
   max-width:900px;
   margin:0 auto;
-  padding:60px 20px;
+  padding:60px 20px 40px;
 }
 
 /* Footer anchored at bottom */
@@ -40,22 +60,23 @@ footer{
   margin-top:auto;
   border-top:1px solid #21262d;
   background:var(--bg-card);
-  text-align:right;             /* your preferred right alignment */
+  text-align:right;   /* your preferred right alignment */
   padding:18px 28px;
   color:var(--muted);
   font-size:.9rem;
 }
 
-/* Provide a little room for fixed progress bar */
-body{padding-bottom:14px}
-
 /* === HEADER / NAVIGATION === */
 header{
-  background:var(--bg-card);
+  background:rgba(22,27,34,.95);
   border-bottom:1px solid #21262d;
-  position:sticky; top:0; z-index:100;
+  position:sticky;
+  top:0;
+  z-index:100;
   box-shadow:0 2px 6px rgba(0,0,0,.3);
+  backdrop-filter:blur(8px);
 }
+
 nav{
   max-width:1000px;
   margin:0 auto;
@@ -69,27 +90,68 @@ nav{
 .logo{
   font-weight:700;
   font-size:1.3rem;
-  text-decoration: none;
-  color: var(--accent);
+  text-decoration:none;
+  color:var(--accent);
 }
 
-/* Global link reset (body links inherit white unless restyled) */
-a{color:inherit;text-decoration:none}
-a:visited{color:inherit}
+/* Global link reset (base) */
+a{
+  color:inherit;
+  text-decoration:none;
+}
+a:visited{
+  color:inherit;
+}
+
+/* Better links inside main content (but don’t override buttons or special classes) */
+main a:not(.btn):not(.link-plain){
+  color:var(--accent);
+  text-decoration:underline;
+  text-decoration-thickness:.08em;
+  text-underline-offset:.18em;
+}
+main a:not(.btn):not(.link-plain):hover{
+  opacity:.85;
+}
 
 /* Nav links: keep them readable (white) and accent on hover */
-.nav-links{display:flex;gap:24px}
+.nav-links{
+  display:flex;
+  gap:24px;
+  flex-wrap:wrap;
+}
 header nav .nav-links a{
   color:var(--text);
   font-weight:500;
   transition:color .2s ease;
 }
-header nav .nav-links a:hover{color:var(--accent)}
+header nav .nav-links a:hover{
+  color:var(--accent);
+}
+
+/* === ACCESSIBILITY: FOCUS STYLES === */
+a:focus-visible,
+.btn:focus-visible,
+button:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
 
 /* === TYPOGRAPHY & CARDS === */
-h1,h2,h3{color:var(--text);margin-bottom:12px;font-weight:600}
-p{color:var(--muted);margin-bottom:16px;font-size:1rem}
-ul{margin-left:20px;margin-bottom:10px}
+h1,h2,h3{
+  color:var(--text);
+  margin-bottom:12px;
+  font-weight:600;
+}
+p{
+  color:var(--muted);
+  margin-bottom:16px;
+  font-size:1rem;
+}
+ul{
+  margin-left:20px;
+  margin-bottom:10px;
+}
 
 .card{
   background:var(--bg-card);
@@ -97,37 +159,58 @@ ul{margin-left:20px;margin-bottom:10px}
   border-radius:12px;
   border:1px solid #21262d;
   margin-bottom:24px;
-  transition:transform .2s ease, box-shadow .2s ease;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
-.card:hover{transform:translateY(-4px);box-shadow:0 6px 14px rgba(0,0,0,.4)}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 6px 14px rgba(0,0,0,.4);
+  border-color:rgba(0,188,212,.5);
+}
 
 /* Buttons */
 .btn{
   display:inline-block;
   background:var(--accent);
-  color:#fff;                   /* white text inside buttons */
+  color:#fff;
   padding:10px 18px;
   border-radius:8px;
   font-weight:600;
-  text-decoration:none;         /* no underline */
+  text-decoration:none;
   transition:all .3s ease;
   box-shadow:0 0 0 rgba(0,188,212,.4);
+  border:none;
+  cursor:pointer;
 }
 .btn:hover{
   background:#08e0ff;
   box-shadow:0 0 16px rgba(0,188,212,.6);
   transform:translateY(-2px);
-  color:#fff; text-decoration:none;
+  color:#fff;
+  text-decoration:none;
 }
 
 /* Fade-in utility */
-.fade-in{opacity:0;transform:translateY(14px);animation:fadeInUp .6s ease-out forwards}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{
+  opacity:0;
+  transform:translateY(14px);
+  animation:fadeInUp .6s ease-out forwards;
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(14px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@media (prefers-reduced-motion:reduce){
+  .fade-in{
+    animation:none;
+    opacity:1;
+    transform:none;
+  }
+}
 
 /* === CLOCK (centered above footer) === */
 .clock{
   position:fixed;
-  bottom:70px;
+  bottom:70px; /* sits above progress bar/footer */
   left:50%;
   transform:translateX(-50%);
   width:fit-content;
@@ -144,12 +227,18 @@ ul{margin-left:20px;margin-bottom:10px}
 
 /* === PROGRESS BAR === */
 .progress-container{
-  position:fixed; bottom:0; left:0;
-  height:6px; width:100%;
-  background:#1c2128; overflow:hidden; z-index:999;
+  position:fixed;
+  bottom:0;
+  left:0;
+  height:6px;
+  width:100%;
+  background:#1c2128;
+  overflow:hidden;
+  z-index:999;
 }
 .progress-bar{
-  height:100%; width:0%;
+  height:100%;
+  width:0%;
   background:linear-gradient(90deg,var(--accent),#00eaff);
   transition:width .1s linear;
 }
@@ -168,19 +257,6 @@ ul{margin-left:20px;margin-bottom:10px}
   will-change:transform;
 }
 
-/* === LAYOUT FIX: sticky footer === */
-html, body { height: 100%; }
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding-bottom: 0 !important; /* remove extra gap */
-}
-main.container { flex: 1; }
-footer { margin-top: auto; }
-
-
 /* === EXPERIENCE PAGE: COMPANY LINKS === */
 /* Use this class on company anchors to keep them white/no-underline */
 a.link-plain,
@@ -193,4 +269,30 @@ a.link-plain:active{
   opacity:1;
   transition:opacity .2s ease;
 }
-a.link-plain:hover{opacity:.7 !important}
+a.link-plain:hover{
+  opacity:.7 !important;
+}
+
+/* === RESPONSIVE TWEAKS === */
+@media (max-width:700px){
+  nav{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .nav-links{
+    gap:16px;
+  }
+
+  main.container{
+    padding:32px 16px 32px;
+  }
+
+  .clock{
+    right:16px;
+    left:auto;
+    transform:none;
+    bottom:72px;
+  }
+}
