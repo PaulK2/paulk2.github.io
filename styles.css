@@ -64,6 +64,13 @@ header{
   backdrop-filter:blur(8px);
 }
 
+.logo-img img {
+  height: 32px;   /* adjust to taste: 28–36px works best */
+  width: auto;
+  display: block;
+}
+
+
 nav{
   max-width:1000px;
   margin:0 auto;
