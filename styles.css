@@ -178,6 +178,15 @@ ul{
   border:none;
   cursor:pointer;
 }
+
+/* Ensure buttons are always white text, even inside grey paragraphs */
+.btn,
+.btn:link,
+.btn:visited{
+  color:#fff !important;
+}
+
+
 .btn:hover{
   background:#08e0ff;
   transform:translateY(-2px);
