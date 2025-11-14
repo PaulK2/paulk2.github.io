@@ -8,16 +8,9 @@
 }
 
 /* === RESET & CORE LAYOUT === */
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html,
-body{
+/* === CORE LAYOUT + STICKY FOOTER === */
+html, body{
   height:100%;
-  scroll-behavior:smooth;
 }
 
 body{
@@ -34,37 +27,31 @@ body{
   opacity:0;
   transition:opacity .25s ease;
 
-  /* leave room for fixed progress bar */
+  /* keep space so the fixed progress bar doesn't overlap content */
   padding-bottom:14px;
 }
 
-body.page-ready{opacity:1;}
-
-@media (prefers-reduced-motion:reduce){
-  body{
-    transition:none;
-    opacity:1;
-  }
+body.page-ready{
+  opacity:1;
 }
 
-/* Main content centered; pushes footer down */
 main.container{
   flex:1;
   max-width:900px;
   margin:0 auto;
-  padding:60px 20px 40px;
+  padding:60px 20px;
 }
 
-/* Footer anchored at bottom */
 footer{
   margin-top:auto;
   border-top:1px solid #21262d;
   background:var(--bg-card);
-  text-align:right;   /* your preferred right alignment */
+  text-align:right;
   padding:18px 28px;
   color:var(--muted);
   font-size:.9rem;
 }
+
 
 /* === HEADER / NAVIGATION === */
 header{
@@ -120,14 +107,28 @@ main a:not(.btn):not(.link-plain):hover{
   gap:24px;
   flex-wrap:wrap;
 }
+.nav-links{
+  display:flex;
+  gap:24px;
+}
+
+/* NAV LINKS: accent by default, white on hover */
 header nav .nav-links a{
-  color:var(--text);
+  color:var(--accent);
   font-weight:500;
   transition:color .2s ease;
 }
+
+/* Hover: turn white */
 header nav .nav-links a:hover{
-  color:var(--accent);
+  color:var(--text);
 }
+
+/* Current page highlighted (stays white) */
+header nav .nav-links a.active{
+  color:var(--text);
+}
+
 
 /* NAVIGATION BUTTON STYLE */
 .nav-btn {
