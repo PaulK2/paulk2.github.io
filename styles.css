@@ -129,6 +129,25 @@ header nav .nav-links a:hover{
   color:var(--accent);
 }
 
+/* NAVIGATION BUTTON STYLE */
+.nav-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  background: var(--accent);       /* light blue background */
+  color: #0d1117 !important;       /* dark text */
+  border: 2px solid var(--accent);
+  transition: all .25s ease;
+}
+
+.nav-btn:hover {
+  background: #ffffff;
+  color: var(--accent) !important; /* accent text on hover */
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+
 /* === ACCESSIBILITY: FOCUS STYLES === */
 a:focus-visible,
 .btn:focus-visible,
