@@ -64,13 +64,6 @@ header{
   backdrop-filter:blur(8px);
 }
 
-.logo-img img {
-  height: 32px;   /* adjust to taste: 28–36px works best */
-  width: auto;
-  display: block;
-}
-
-
 nav{
   max-width:1000px;
   margin:0 auto;
@@ -86,6 +79,12 @@ nav{
   font-size:1.3rem;
   text-decoration:none;
   color:var(--accent);
+}
+
+.logo-img img {
+  height: 32px;   /* adjust to taste: 28–36px works best */
+  width: auto;
+  display: block;
 }
 
 /* Global link reset (base) */
