@@ -7,17 +7,19 @@
   --accent:#00bcd4;
 }
 
-/* === RESET & CORE LAYOUT === */
-/* === CORE LAYOUT + STICKY FOOTER === */
-html, body{
+/* === RESET === */
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
   height:100%;
 }
 
 body{
   min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  margin:0;
   background:var(--bg);
   color:var(--text);
   line-height:1.6;
@@ -27,39 +29,25 @@ body{
   opacity:0;
   transition:opacity .25s ease;
 
-  /* keep space so the fixed progress bar doesn't overlap content */
-  padding-bottom: 80px;  /* make room for footer height */
-
-
+  /* space for fixed footer + progress bar */
+  padding-bottom:80px;
 }
 
-body.page-ready{
-  opacity:1;
+body.page-ready{opacity:1;}
+
+@media (prefers-reduced-motion:reduce){
+  body{
+    transition:none;
+    opacity:1;
+  }
 }
 
+/* === MAIN LAYOUT === */
 main.container{
-  flex:1;
   max-width:900px;
   margin:0 auto;
   padding:60px 20px;
 }
-
-footer{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  border-top: 1px solid #21262d;
-  background: var(--bg-card);
-  padding: 14px 22px;
-  text-align: right;
-  color: var(--muted);
-  font-size: .9rem;
-  z-index: 900;
-  overflow: hidden;      /* prevent text clipping */
-}
-
-
 
 /* === HEADER / NAVIGATION === */
 header{
@@ -81,7 +69,7 @@ nav{
   align-items:center;
 }
 
-/* Make the MAIN HEADER LOGO BLUE */
+/* OLD TEXT LOGO (still safe to keep if needed somewhere) */
 .logo{
   font-weight:700;
   font-size:1.3rem;
@@ -89,13 +77,14 @@ nav{
   color:var(--accent);
 }
 
-.logo-img img {
-  height: 47px;   /* adjust to taste: 28–36px works best */
-  width: auto;
-  display: block;
+/* IMAGE LOGO SIZE */
+.logo-img img{
+  height:32px;   /* adjust if needed */
+  width:auto;
+  display:block;
 }
 
-/* Global link reset (base) */
+/* Global link reset */
 a{
   color:inherit;
   text-decoration:none;
@@ -104,7 +93,30 @@ a:visited{
   color:inherit;
 }
 
-/* Better links inside main content (but don’t override buttons or special classes) */
+/* Navigation links: CLEAN TEXT ONLY */
+.nav-links{
+  display:flex;
+  gap:24px;
+}
+
+/* Default: accent color */
+header nav .nav-links a{
+  color:var(--accent);
+  font-weight:500;
+  transition:color .2s ease;
+}
+
+/* Hover: white */
+header nav .nav-links a:hover{
+  color:var(--text);
+}
+
+/* Active/current page: stays white */
+header nav .nav-links a.active{
+  color:var(--text);
+}
+
+/* Links in main content (not nav, not buttons, not special) */
 main a:not(.btn):not(.link-plain){
   color:var(--accent);
   text-decoration:underline;
@@ -115,36 +127,7 @@ main a:not(.btn):not(.link-plain):hover{
   opacity:.85;
 }
 
-/* Nav links: keep them readable (white) and accent on hover */
-.nav-links{
-  display:flex;
-  gap:24px;
-  flex-wrap:wrap;
-}
-.nav-links{
-  display:flex;
-  gap:24px;
-}
-
-/* NAV LINKS: accent by default, white on hover */
-header nav .nav-links a{
-  color:var(--accent);
-  font-weight:500;
-  transition:color .2s ease;
-}
-
-/* Hover: turn white */
-header nav .nav-links a:hover{
-  color:var(--text);
-}
-
-/* Current page highlighted (stays white) */
-header nav .nav-links a.active{
-  color:var(--text);
-}
-
-
-/* === ACCESSIBILITY: FOCUS STYLES === */
+/* === ACCESSIBILITY FOCUS === */
 a:focus-visible,
 .btn:focus-visible,
 button:focus-visible{
@@ -182,31 +165,23 @@ ul{
   border-color:rgba(0,188,212,.5);
 }
 
-/* Buttons */
+/* Buttons in main content */
 .btn{
   display:inline-block;
   background:var(--accent);
-  color:#fff !important;
+  color:#fff;
   padding:10px 18px;
   border-radius:8px;
   font-weight:600;
   text-decoration:none;
-  transition:all .3s ease;
-  box-shadow:0 0 0 rgba(0,188,212,.4);
+  transition:all .25s ease;
   border:none;
   cursor:pointer;
 }
-
-p .btn {
-  color: #fff;
-}
-
 .btn:hover{
   background:#08e0ff;
-  box-shadow:0 0 16px rgba(0,188,212,.6);
   transform:translateY(-2px);
   color:#fff;
-  text-decoration:none;
 }
 
 /* Fade-in utility */
@@ -227,10 +202,10 @@ p .btn {
   }
 }
 
-/* === CLOCK (centered above footer) === */
+/* === CLOCK (above footer) === */
 .clock{
   position:fixed;
-  bottom:70px; /* sits above progress bar/footer */
+  bottom:64px; /* above footer */
   left:50%;
   transform:translateX(-50%);
   width:fit-content;
@@ -245,16 +220,16 @@ p .btn {
   box-shadow:0 0 10px rgba(0,188,212,.3);
 }
 
-/* === PROGRESS BAR === */
+/* === PROGRESS BAR (at very bottom) === */
 .progress-container{
   position:fixed;
-  bottom: 60px;
+  bottom:0;
   left:0;
-  height:6px;
+  height:4px;
   width:100%;
   background:#1c2128;
   overflow:hidden;
-  z-index:999;
+  z-index:950; /* under footer text, but footer sits slightly above */
 }
 .progress-bar{
   height:100%;
@@ -263,22 +238,36 @@ p .btn {
   transition:width .1s linear;
 }
 
-/* === FISH (footer) === */
+/* === FOOTER (fixed, text visible) === */
+footer{
+  position:fixed;
+  bottom:4px;          /* just above progress bar */
+  left:0;
+  width:100%;
+  border-top:1px solid #21262d;
+  background:var(--bg-card);
+  text-align:right;
+  padding:10px 24px;
+  color:var(--muted);
+  font-size:.9rem;
+  z-index:900;
+}
+
+/* === FISH === */
 .fish{
   position:fixed;
-  bottom:44px;
+  bottom:28px;
   left:50%;
   transform:translateX(-50%);
   font-size:30px;
   color:var(--accent);
-  z-index:9999;
+  z-index:999;
   pointer-events:none;
   transition:transform .3s cubic-bezier(.25,.1,.25,1);
   will-change:transform;
 }
 
 /* === EXPERIENCE PAGE: COMPANY LINKS === */
-/* Use this class on company anchors to keep them white/no-underline */
 a.link-plain,
 a.link-plain:visited,
 a.link-plain:hover,
@@ -303,10 +292,11 @@ a.link-plain:hover{
 
   .nav-links{
     gap:16px;
+    flex-wrap:wrap;
   }
 
   main.container{
-    padding:32px 16px 32px;
+    padding:32px 16px 80px;
   }
 
   .clock{
