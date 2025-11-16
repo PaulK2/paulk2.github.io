@@ -231,7 +231,7 @@ ul{
 .experience-timeline::before{
   content:"";
   position:absolute;
-  left:40px;
+  right:20px;   /* move to right side */
   top:0;
   bottom:0;
   width:2px;
@@ -239,24 +239,28 @@ ul{
   opacity:.9;
 }
 
+
 /* Each card sits on the line */
-.exp-item{
-  position:relative;
+.exp-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding-right: 30px; /* room for the timeline dots */
 }
+
 
 /* Timeline dot for each job */
 .exp-item::before{
-  content:"";
-  position:absolute;
-  left:16px;
+  right:20px;   /* move to right */
   top:32px;
   width:10px;
   height:10px;
   border-radius:50%;
   background:var(--bg);
   box-shadow:0 0 0 2px var(--accent);
-  transform:translate(-50%,-50%);
+  transform:translate(50%,-50%); /* flipped for right side */
 }
+
 
 /* === EXPERIENCE TYPOGRAPHY === */
 .exp-header h2{
@@ -330,16 +334,14 @@ ul{
 
 /* Mobile tweaks */
 @media (max-width:700px){
-  .experience-timeline{
-    padding-left:0;
-  }
   .experience-timeline::before{
-    left:16px;
+    right:14px;
   }
   .exp-item::before{
-    left:28px;
+    right:14px;
   }
 }
+
 
 
 
