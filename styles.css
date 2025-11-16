@@ -347,6 +347,59 @@ ul{
   color:#fff;
 }
 
+/* === BUTTON DROPDOWN (Download CV) === */
+
+/* Row that holds the dropdown + second button */
+.btn-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+}
+
+/* Dropdown wrapper */
+.btn-dropdown{
+  position:relative;
+  display:inline-block;
+}
+
+/* Dropdown menu panel */
+.btn-menu{
+  position:absolute;
+  top:100%;
+  left:0;
+  margin-top:6px;
+  min-width:190px;
+  padding:6px 0;
+  background:var(--bg-card);
+  border:1px solid #30363d;
+  border-radius:8px;
+  box-shadow:0 10px 25px rgba(0,0,0,.6);
+  display:none;
+  z-index:2000;
+}
+
+/* Items inside dropdown */
+.btn-menu a{
+  display:block;
+  padding:8px 14px;
+  font-size:.9rem;
+  color:var(--text);
+  text-decoration:none;
+  white-space:nowrap;
+}
+
+.btn-menu a:hover{
+  background:#1f2933;
+  color:var(--accent);
+}
+
+/* Show when JS toggles it */
+.btn-menu.open{
+  display:block;
+}
+
+
 /* Fade-in utility */
 .fade-in{
   opacity:0;
