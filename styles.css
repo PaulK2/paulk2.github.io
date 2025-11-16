@@ -158,6 +158,9 @@ ul{
   border:1px solid #21262d;
   margin-bottom:24px;
   transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  position: relative;
+  z-index: 2;   /* cards above the line */
+
 }
 .card:hover{
   transform:translateY(-4px);
@@ -237,7 +240,7 @@ ul{
   width:2px;
   background:#21262d;
   opacity:.9;
-  z-index:1;
+  z-index:0;
 }
 
 
@@ -264,7 +267,7 @@ ul{
   background:var(--bg);
   box-shadow:0 0 0 3px var(--accent);
   transform:translate(50%, -50%);  
-  z-index:5;               /* ensures it sits above the card */
+  z-index:3;               /* ensures it sits above the card */
 }
 
 
