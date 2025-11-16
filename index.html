@@ -102,6 +102,31 @@
         .querySelectorAll("main, .card, h1, h2, p, ul")
         .forEach((el) => el.classList.add("fade-in"));
 
+// --- CV dropdown ---
+const cvToggle = document.getElementById("cv-toggle");
+const cvMenu = document.getElementById("cv-menu");
+
+if (cvToggle && cvMenu) {
+  // Toggle on button click
+  cvToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    cvMenu.classList.toggle("open");
+  });
+
+  // Close when clicking outside
+  document.addEventListener("click", () => {
+    cvMenu.classList.remove("open");
+  });
+
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      cvMenu.classList.remove("open");
+    }
+  });
+}
+
+      
       // Fade-out between internal pages
       document.querySelectorAll('a[href]').forEach((a) => {
         const url = new URL(a.getAttribute('href'), window.location.href);
