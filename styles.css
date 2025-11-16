@@ -231,13 +231,15 @@ ul{
 .experience-timeline::before{
   content:"";
   position:absolute;
-  right:20px;   /* move to right side */
+  right:20px;
   top:0;
   bottom:0;
   width:2px;
   background:#21262d;
   opacity:.9;
+  z-index:1;
 }
+
 
 
 /* Each card sits on the line */
@@ -245,21 +247,26 @@ ul{
   display: flex;
   align-items: flex-start;
   gap: 20px;
+  position:relative;
   padding-right: 30px; /* room for the timeline dots */
 }
 
 
 /* Timeline dot for each job */
 .exp-item::before{
-  right:20px;   /* move to right */
+  content:"";
+  position:absolute;
+  right:20px;              /* align with the timeline line */
   top:32px;
-  width:10px;
-  height:10px;
+  width:12px;
+  height:12px;
   border-radius:50%;
   background:var(--bg);
-  box-shadow:0 0 0 2px var(--accent);
-  transform:translate(50%,-50%); /* flipped for right side */
+  box-shadow:0 0 0 3px var(--accent);
+  transform:translate(50%, -50%);  
+  z-index:5;               /* ensures it sits above the card */
 }
+
 
 
 /* === EXPERIENCE TYPOGRAPHY === */
