@@ -168,6 +168,65 @@ ul{
   border-color:rgba(0,188,212,.5);
 }
 
+/* === HERO (INDEX) === */
+
+/* Animated underline under the main heading */
+.hero-title{
+  position:relative;
+  display:inline-block;
+  margin-bottom:10px;
+}
+
+.hero-title::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:80px;
+  height:3px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--accent),#00eaff);
+  transform-origin:left;
+  animation:heroUnderline 2.4s ease-in-out infinite alternate;
+}
+
+/* Highlight badges under the name */
+.highlight-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:16px 0 20px;
+}
+
+.highlight-badges span{
+  background:#161b22;
+  border:1px solid #30363d;
+  color:var(--accent);
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:.85rem;
+  box-shadow:0 0 12px rgba(0,188,212,.18);
+}
+
+/* Scroll hint below buttons */
+.scroll-hint{
+  margin-top:32px;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  font-size:.85rem;
+  color:var(--muted);
+  opacity:.8;
+  animation:scrollPulse 1.8s ease-in-out infinite;
+}
+
+.scroll-arrow{
+  font-size:1.3rem;
+  color:var(--accent);
+}
+
+
 /* EXPERIENCE PAGE LOGO LAYOUT */
 .exp-item {
   display: flex;
@@ -468,6 +527,25 @@ button.btn:hover{
   from{opacity:0;transform:translateY(14px);}
   to{opacity:1;transform:translateY(0);}
 }
+
+@keyframes heroUnderline{
+  from{
+    transform:scaleX(.6);
+    opacity:.7;
+  }
+  to{
+    transform:scaleX(1);
+    opacity:1;
+  }
+}
+
+@keyframes scrollPulse{
+  0%{transform:translateY(0);opacity:.6;}
+  50%{transform:translateY(4px);opacity:1;}
+  100%{transform:translateY(0);opacity:.6;}
+}
+
+
 @media (prefers-reduced-motion:reduce){
   .fade-in{
     animation:none;
