@@ -168,13 +168,11 @@ ul{
   border-color:rgba(0,188,212,.5);
 }
 
-/* === HERO (INDEX) === */
-
-/* Animated underline under the main heading */
+/* === HERO TITLE UNDERLINE === */
 .hero-title{
   position:relative;
   display:inline-block;
-  margin-bottom:10px;
+  margin-bottom:20px;
 }
 
 .hero-title::after{
@@ -189,6 +187,7 @@ ul{
   transform-origin:left;
   animation:heroUnderline 2.4s ease-in-out infinite alternate;
 }
+
 
 /* Highlight badges under the name */
 .highlight-badges{
