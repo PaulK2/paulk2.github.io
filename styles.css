@@ -93,6 +93,20 @@ a:visited{
   color:inherit;
 }
 
+/* Make full project cards clickable without looking like links */
+.card-link{
+  display:block;
+  color:inherit;
+  text-decoration:none;
+}
+
+.card-link:hover .card{
+  transform:translateY(-4px);
+  box-shadow:0 6px 14px rgba(0,0,0,.4);
+  border-color:rgba(0,188,212,.5);
+}
+
+
 /* Navigation links: CLEAN TEXT ONLY */
 .nav-links{
   display:flex;
